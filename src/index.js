@@ -2,6 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
+//Normalizer
+import "./normalize.css";
+
+//Sass Imports
+import "./sass/index.sass";
+
+// -- Containers -- //
+import "./sass/Login.sass";
+import "./sass/Home.sass";
+import "./sass/ABM.sass";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
