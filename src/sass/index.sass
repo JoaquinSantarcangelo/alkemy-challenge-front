@@ -17,12 +17,22 @@ $red: #ee5253
 body
     font-family: "Poppins", sans-serif
     color: $grey0
+    background-color: $grey0
 
-.app
-    // width: 100vw
-    // height: 100vh
-    // overflow: hidden
-    // overflow-y: scroll
+//Container
+.container
+    width: 90%
+    max-width: 40vw
+    height: 100%
+    min-width: 30em
+    @media screen and ( max-width: 768px )
+        width: 90%
+        max-width: none
+        min-width: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
 
 //Custom Scrollbar
 ::-webkit-scrollbar

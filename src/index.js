@@ -13,6 +13,9 @@ import "./sass/Login.sass";
 import "./sass/Home.sass";
 import "./sass/ABM.sass";
 
+// -- Components -- //
+import "./sass/Navbar.sass"
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

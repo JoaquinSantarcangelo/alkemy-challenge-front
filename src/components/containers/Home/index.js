@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-//Icons
-import { BiHomeAlt, BiListPlus, BiLogOut } from "react-icons/bi";
+
 
 const Item = ({ itemInfo }) => {
   return (
@@ -35,29 +34,9 @@ const Home = () => {
   return (
     <div className="home">
       <div className="container">
-        <div className="buttons">
-          <div className="button" id="home">
-            <div className="icon">
-              <BiHomeAlt />
-            </div>
-            Home
-          </div>
-          <div className="button" id="abm">
-            <div className="icon">
-              <BiListPlus />
-            </div>
-            ABM
-          </div>
-          <div className="button" id="logout">
-            <div className="icon">
-              <BiLogOut />
-            </div>
-            Logout
-          </div>
-        </div>
         <div className="balance">
           <div className="text">
-            Hi Joaquin! <br /> <span>Your current balance:</span>
+            Hi Joaquin! <br /> <span>Your balance:</span>
           </div>
           <div className="amount">${balance}</div>
         </div>

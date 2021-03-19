@@ -1,0 +1,43 @@
+@import "index"
+
+.container
+    margin: 0 auto
+    .navbar
+        width: 100%
+        margin-bottom: 2em
+        border-radius: 0 0 0.5em 0.5em
+        overflow: hidden
+        display: flex
+        .button
+            height: 3em
+            display: flex
+            align-items: center
+            justify-content: center
+            background-color: $grey3
+            color: $grey0
+            font-weight: 600
+            transition: all 0.4s ease
+            font-size: 1.1em
+            cursor: pointer
+            .icon
+                display: flex
+                align-items: center
+                justify-content: center
+                font-size: 1.5em
+                margin-right: 0.25em
+            &:hover
+                opacity: 0.9
+        #abm
+
+            flex: 0.4
+        #home
+            flex: 0.4
+        #logout
+            background-color: $red
+            flex: 0.2
+
+    @media screen and ( max-width: 425px )
+        border-radius: 0.5em
+        #logout
+            .text
+                display: none
