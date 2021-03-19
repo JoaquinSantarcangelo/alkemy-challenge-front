@@ -20,21 +20,27 @@ const App = () => {
   return (
     <div className="app">
       <Router>
-        <Navbar />
+        {loggedIn && <Navbar setLoggedIn={setLoggedIn} />}
         <Switch>
           <Route
             path="/login"
-            render={() => (!loggedIn ? <Login /> : <Redirect to="/" />)}
+            render={() =>
+              !loggedIn ? (
+                <Login setLoggedIn={setLoggedIn} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
           ></Route>
           <Route
             path="/"
             exact
-            render={() => (!loggedIn ? <Login /> : <Home />)}
+            render={() => (!loggedIn ? <Redirect to="/login" /> : <Home />)}
           ></Route>
           <Route
             path="/abm"
             exact
-            render={() => (!loggedIn ? <Login /> : <ABM />)}
+            render={() => (!loggedIn ? <Redirect to="/login" /> : <ABM />)}
           ></Route>
         </Switch>
       </Router>

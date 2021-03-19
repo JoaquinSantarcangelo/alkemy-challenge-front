@@ -1,25 +1,25 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 //Icons
 import { BiHomeAlt, BiListPlus, BiLogOut } from "react-icons/bi";
 
-const Navbar = () => {
+const Navbar = ({ setLoggedIn }) => {
   return (
     <div className="container">
       <div className="navbar">
-        <div className="button" id="home">
+        <Link to="/" className="button" id="home">
           <div className="icon">
             <BiHomeAlt />
           </div>
           <div className="text">Home</div>
-        </div>
-        <div className="button" id="abm">
+        </Link>
+        <Link to="/abm" className="button" id="abm">
           <div className="icon">
             <BiListPlus />
           </div>
           <div className="text">ABM</div>
-        </div>
-        <div className="button" id="logout">
+        </Link>
+        <div onClick={() => setLoggedIn(false)} className="button" id="logout">
           <div className="icon">
             <BiLogOut />
           </div>

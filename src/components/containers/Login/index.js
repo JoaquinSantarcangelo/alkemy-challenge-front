@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   return (
     <div className="login">
@@ -16,7 +20,7 @@ const Login = () => {
             placeholder="Email adress"
           />
           <input type="password" name="" id="" placeholder="Password" />
-          <button>Log in</button>
+          <button onClick={() => handleLogin()}>Log in</button>
         </div>
         <div className="create-account">
           <div className="text">
