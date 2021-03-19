@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
@@ -11,7 +11,7 @@ const Login = ({ setLoggedIn }) => {
   return (
     <div className="login">
       <div className="card">
-        <h1>Login</h1>
+        <h1>Welcome!</h1>
         <div className="wrapper">
           <input
             type="email"
@@ -20,11 +20,11 @@ const Login = ({ setLoggedIn }) => {
             placeholder="Email adress"
           />
           <input type="password" name="" id="" placeholder="Password" />
-          <button onClick={() => handleLogin()}>Log in</button>
+          <button onClick={() => handleLogin()}>Login</button>
         </div>
         <div className="create-account">
           <div className="text">
-            Don't have an account yet? <span>Create one!</span>
+            Don't have an account yet? <Link to="/register">Create one!</Link>
           </div>
         </div>
       </div>

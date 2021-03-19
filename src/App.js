@@ -8,6 +8,7 @@ import {
 
 //Containers
 import Login from "./components/containers/Login";
+import Register from "./components/containers/Register";
 import Home from "./components/containers/Home";
 import ABM from "./components/containers/ABM";
 
@@ -15,7 +16,7 @@ import ABM from "./components/containers/ABM";
 import Navbar from "./components/Navbar";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="app">
@@ -31,6 +32,10 @@ const App = () => {
                 <Redirect to="/" />
               )
             }
+          ></Route>
+          <Route
+            path="/register"
+            render={() => (!loggedIn ? <Register /> : <Redirect to="/" />)}
           ></Route>
           <Route
             path="/"
