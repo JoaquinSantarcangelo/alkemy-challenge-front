@@ -34,23 +34,23 @@ const Register = () => {
           <input
             type="email"
             name="email"
-            id="email"
+            id="emailCheck"
             placeholder="Confirm email adress"
             value={emailCheck}
             onChange={(e) => setEmailCheck(e.target.value)}
           />
           <input
             type="password"
-            name=""
-            id=""
+            name="password"
+            id="password"
             placeholder="Password"
             onChange={(e) => setPw(e.target.value)}
             value={pw}
           />
           <input
             type="password"
-            name=""
-            id=""
+            name="password"
+            id="passwordCheck"
             placeholder="Confirm Password"
             onChange={(e) => setPwCheck(e.target.value)}
             value={pwCheck}

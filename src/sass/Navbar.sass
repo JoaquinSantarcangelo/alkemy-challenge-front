@@ -4,8 +4,8 @@
     margin: 0 auto
     .navbar
         width: 100%
-        margin-bottom: 2em
-        border-radius: 0 0 0.5em 0.5em
+        margin: 2em 0
+
         overflow: hidden
         display: flex
         .button
@@ -19,6 +19,8 @@
             transition: all 0.4s ease
             font-size: 1.1em
             cursor: pointer
+            margin-right: 1em
+            border-radius: 0.25em
             .icon
                 display: flex
                 align-items: center
@@ -26,7 +28,8 @@
                 font-size: 1.5em
                 margin-right: 0.25em
             &:hover
-                opacity: 0.9
+                filter: brightness(1.2)
+
         #abm
 
             flex: 0.4
@@ -36,6 +39,7 @@
             background-color: $red
             flex: 0.2
             padding: 0 0.5em
+            margin: 0
 
     @media screen and ( max-width: 425px )
         border-radius: 0.5em
