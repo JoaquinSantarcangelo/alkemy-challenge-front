@@ -4,12 +4,30 @@
 //Colors
 $grey0: #131a22
 $grey1: #1c293a
-$grey2: #576574
-$grey3: #8395a7
+$grey2: #283649
+$grey3: #b8c3ce
 $green: #1dd1a1
+$blue: #2e86de
 $light0: #e2e2e2
 $red: #ee5253
+
+*,*::before, *::after
+    box-sizing: border-box
 
 body
     font-family: "Poppins", sans-serif
     color: $grey0
+
+.app
+    // width: 100vw
+    // height: 100vh
+    // overflow: hidden
+    // overflow-y: scroll
+
+//Custom Scrollbar
+::-webkit-scrollbar
+    width: 12px
+    background: $grey2
+
+::-webkit-scrollbar-thumb
+    background: $grey1

@@ -1,17 +1,40 @@
 @import "./index"
 
 .home
-    width: 100vw
-    height: 100vh
+    width: 100%
+    min-height: 100vh
     background-color: $grey0
     display: grid
     place-items: center
     color: $light0
+    padding-top: 2em
+    overflow: hidden
+    //Add Button
+    .add-button
+        position: absolute
+        top: 2rem
+        left: 2rem
+        background-color: $blue
+        font-size: 2em
+        width: 2em
+        height: 2em
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 100%
+        cursor: pointer
+        transition: all 0.4s ease
+        &:hover
+            transform: scale(1.1)
+
+    //Container
     .container
         width: 90%
-        max-width: 40em
-        height: 90%
+        max-width: 40vw
+        height: 100%
+        min-width: 30em
 
+        //Balance
         .balance
             padding: 0 2em
             width: 100%
@@ -22,16 +45,30 @@
             align-items: center
             justify-content: space-between
 
+            //Text
             .text
                 font-size: 1.5em
+                font-weight: 600
+                span
+                    font-weight: 400
+
+            //Current Balance
             .amount
                 font-size: 2em
                 font-weight: 600
-        .items
 
-            margin-top: 2em
+        //Items
+        .items
+            margin-top: 3em
             width: 100%
             height: auto
+
+            // Section Title
+            h1
+                font-size: 1.5em
+                font-weight: 600
+
+            //Transaction Item
             .item
                 padding: 1.5em 2em
                 margin-bottom: 1em
@@ -41,8 +78,25 @@
                 display: flex
                 align-items: center
                 justify-content: space-between
+                transition: all 0.4s ease
+
+                //Title
                 .title
                     font-size: 1.5em
+
+                //Type
+                .type
+                    margin-top: 0.5em
+                    padding: 0.25em 1em
+                    border-radius: 0.33em
+                    border: 1px solid $light0
+                    text-transform: uppercase
+                    transition: all 0.4s ease
+                    &:hover
+                        color: $grey0
+                        background-color: $light0
+
+                //Amount
                 .amount
                     font-size: 1.5em
                     color: $green
@@ -52,9 +106,24 @@
                     color: $red
                     &::before
                         content: "-"
-                .type
-                    margin-top: 0.5em
-                    padding: 0.25em 1em
-                    border-radius: 0.33em
-                    border: 1px solid $light0
-                    text-transform: uppercase
+
+                //Item Hover
+                &:hover
+                    background-color: $grey2
+                    transform: scale(1.025)
+
+    //Media Queries
+    @media screen and ( max-width: 768px )
+        display: flex
+        align-items: center
+        justify-content: center
+        .add-button
+            display: none
+        .container
+            width: 90%
+            max-width: none
+            min-width: 0
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-direction: column
