@@ -32,7 +32,7 @@ const Login = ({ setLoggedIn }) => {
           />
           <button onClick={() => handleLogin()}>Login</button>
         </div>
-        <div className="create-account">
+        <div className="info-text">
           <div className="text">
             Don't have an account yet? <Link to="/register">Create one!</Link>
           </div>

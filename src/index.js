@@ -14,8 +14,9 @@ import "./sass/Home.sass";
 import "./sass/ABM.sass";
 
 // -- Components -- //
-import "./sass/Navbar.sass"
-import "./sass/Items.sass"
+import "./sass/Navbar.sass";
+import "./sass/Items.sass";
+import "./sass/Form.sass";
 
 ReactDOM.render(
   <React.StrictMode>

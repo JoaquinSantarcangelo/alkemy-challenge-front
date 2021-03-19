@@ -17,25 +17,31 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   //Hooks - useState
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [items, setItems] = useState([
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
-    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
-    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { desc: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { desc: "Title", amount: 255.2, type: "Taxes", date: new Date() },
   ]);
   const [balance, setBalance] = useState(100.55);
+
+  const addTransaction = (transaction) => {
+    console.log("Sending new transaction");
+    console.log(transaction);
+    setItems((prevItems) => [...prevItems, transaction]);
+  };
 
   return (
     <div className="app">
@@ -78,7 +84,11 @@ const App = () => {
             path="/abm"
             exact
             render={() =>
-              !loggedIn ? <Redirect to="/login" /> : <ABM items={items} />
+              !loggedIn ? (
+                <Redirect to="/login" />
+              ) : (
+                <ABM addTransaction={addTransaction} items={items} />
+              )
             }
           ></Route>
         </Switch>

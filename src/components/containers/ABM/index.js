@@ -2,12 +2,13 @@ import React from "react";
 
 //Components
 import Items from "../../Items";
+import Form from "../../Form";
 
-const ABM = ({ items }) => {
+const ABM = ({ items, addTransaction }) => {
   return (
     <div className="container">
-      <div className="form"></div>
-      <Items items={items} title="My transactions"/>
+      <Form addTransaction={addTransaction} />
+      <Items items={items} title="My transactions" />
     </div>
   );
 };

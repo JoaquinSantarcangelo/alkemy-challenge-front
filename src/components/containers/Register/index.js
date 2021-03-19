@@ -57,7 +57,7 @@ const Register = () => {
           />
           <button onClick={() => handleRegister()}>Create account</button>
         </div>
-        <div className="create-account">
+        <div className="info-text">
           <div className="text">
             Already have an account? <Link to="/login">Log in!</Link>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 //Icons
 import { BiHomeAlt, BiListPlus, BiLogOut } from "react-icons/bi";
 
@@ -7,18 +7,30 @@ const Navbar = ({ setLoggedIn }) => {
   return (
     <div className="container">
       <div className="navbar">
-        <Link to="/" className="button" id="home">
+        <NavLink
+          activeClassName="active-link"
+          exact={true}
+          to="/"
+          className="button"
+          id="home"
+        >
           <div className="icon">
             <BiHomeAlt />
           </div>
           <div className="text">Home</div>
-        </Link>
-        <Link to="/abm" className="button" id="abm">
+        </NavLink>
+        <NavLink
+          activeClassName="active-link"
+          exact={true}
+          to="/abm"
+          className="button"
+          id="abm"
+        >
           <div className="icon">
             <BiListPlus />
           </div>
           <div className="text">ABM</div>
-        </Link>
+        </NavLink>
         <div onClick={() => setLoggedIn(false)} className="button" id="logout">
           <div className="icon">
             <BiLogOut />

@@ -8,7 +8,7 @@ const Items = ({ items, title, more }) => {
     return (
       <div className="item">
         <div className="wrapper-left">
-          <div className="title">{itemInfo.title}</div>
+          <div className="title">{itemInfo.desc}</div>
           <div className="type">{itemInfo.type}</div>
         </div>
         <div className="wrapper-right">
