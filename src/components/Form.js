@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Form = ({ addTransaction }) => {
   const [desc, setDesc] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Taxes");
   const [amount, setAmount] = useState(null);
   const [date, setDate] = useState(null);
 
@@ -11,7 +11,12 @@ const Form = ({ addTransaction }) => {
     let newTransaction;
     //Validation
     if (true) {
-      newTransaction = { desc, amount, type, date };
+      newTransaction = {
+        desc,
+        amount,
+        type,
+        date: new Date(date),
+      };
     }
 
     console.log(newTransaction);
@@ -33,10 +38,10 @@ const Form = ({ addTransaction }) => {
       />
       <div className="wrapper">
         <select id="type" name="cars" onChange={(e) => setType(e.target.value)}>
-          <option value="volvo">Taxes</option>
-          <option value="saab">Food</option>
-          <option value="fiat">Health</option>
-          <option value="audi">Fun</option>
+          <option value="taxes">Taxes</option>
+          <option value="food">Food</option>
+          <option value="health">Health</option>
+          <option value="fun">Fun</option>
         </select>
         <input
           type="date"

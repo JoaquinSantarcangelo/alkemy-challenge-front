@@ -40,7 +40,7 @@ const App = () => {
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
     console.log(transaction);
-    setItems((prevItems) => [...prevItems, transaction]);
+    setItems([...items, transaction]);
   };
 
   return (
