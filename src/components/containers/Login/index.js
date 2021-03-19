@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
@@ -18,8 +19,17 @@ const Login = ({ setLoggedIn }) => {
             name="email"
             id="email"
             placeholder="Email adress"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
-          <input type="password" name="" id="" placeholder="Password" />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="Password"
+            onChange={(e) => setPw(e.target.value)}
+            value={pw}
+          />
           <button onClick={() => handleLogin()}>Login</button>
         </div>
         <div className="create-account">

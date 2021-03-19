@@ -6,6 +6,7 @@ const Register = () => {
   const [emailCheck, setEmailCheck] = useState("");
   const [pw, setPw] = useState("");
   const [pwCheck, setPwCheck] = useState("");
+  const [name, setName] = useState("");
 
   const handleRegister = () => {};
 
@@ -14,21 +15,46 @@ const Register = () => {
       <div className="card">
         <h1>Register</h1>
         <div className="wrapper">
-          <input type="text" name="name" id="name" placeholder="First Name"/>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="First Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <input
             type="email"
             name="email"
             id="email"
             placeholder="Email adress"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="email"
             name="email"
             id="email"
             placeholder="Confirm email adress"
+            value={emailCheck}
+            onChange={(e) => setEmailCheck(e.target.value)}
           />
-          <input type="password" name="" id="" placeholder="Password" />
-          <input type="password" name="" id="" placeholder="Confirm Password" />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="Password"
+            onChange={(e) => setPw(e.target.value)}
+            value={pw}
+          />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="Confirm Password"
+            onChange={(e) => setPwCheck(e.target.value)}
+            value={pwCheck}
+          />
           <button onClick={() => handleRegister()}>Create account</button>
         </div>
         <div className="create-account">
