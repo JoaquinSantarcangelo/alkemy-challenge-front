@@ -7,26 +7,41 @@
     display: grid
     place-items: center
     color: $light0
-    padding-top: 2em
     overflow: hidden
     //Add Button
-    .add-button
-        position: absolute
-        top: 2rem
-        left: 2rem
-        background-color: $blue
-        font-size: 2em
-        width: 2em
-        height: 2em
+    .buttons
+        width: 100%
+        margin-bottom: 2em
+        border-radius: 0 0 0.5em 0.5em
+        overflow: hidden
         display: flex
-        align-items: center
-        justify-content: center
-        border-radius: 100%
-        cursor: pointer
-        transition: all 0.4s ease
-        &:hover
-            transform: scale(1.1)
+        .button
+            height: 3em
+            display: flex
+            align-items: center
+            justify-content: center
+            background-color: $grey3
+            color: $grey0
+            font-weight: 600
+            transition: all 0.4s ease
+            font-size: 1.1em
+            cursor: pointer
+            .icon
+                display: flex
+                align-items: center
+                justify-content: center
+                font-size: 1.5em
+                margin-right: 0.25em
+            &:hover
+                opacity: 0.9
+        #abm
 
+            flex: 0.4
+        #home
+            flex: 0.4
+        #logout
+            background-color: $red
+            flex: 0.2
     //Container
     .container
         width: 90%
@@ -80,32 +95,45 @@
                 justify-content: space-between
                 transition: all 0.4s ease
 
-                //Title
-                .title
-                    font-size: 1.5em
+                .wrapper-left
+                    //Title
+                    .title
+                        font-size: 1.5em
 
-                //Type
-                .type
-                    margin-top: 0.5em
-                    padding: 0.25em 1em
-                    border-radius: 0.33em
-                    border: 1px solid $light0
-                    text-transform: uppercase
-                    transition: all 0.4s ease
-                    &:hover
-                        color: $grey0
-                        background-color: $light0
+                    //Type
+                    .type
+                        margin-top: 0.5em
+                        padding: 0.25em 1em
+                        border-radius: 0.33em
+                        border: 1px solid $light0
+                        text-transform: uppercase
+                        transition: all 0.4s ease
+                        &:hover
+                            color: $grey0
+                            background-color: $light0
 
-                //Amount
-                .amount
-                    font-size: 1.5em
-                    color: $green
-                    &::before
-                        content: "+"
-                .negative
-                    color: $red
-                    &::before
-                        content: "-"
+                .wrapper-right
+                    display: flex
+                    flex-direction: column
+                    align-items: flex-end
+                    //Amount
+                    .amount
+                        font-size: 1.5em
+                        color: $green
+                        &::before
+                            content: "+"
+                    .negative
+                        color: $red
+                        &::before
+                            content: "-"
+
+                    //Date
+                    .date
+                        margin-top: 0.35rem
+                        display: flex
+                        align-items: flex-end
+                        display: block
+                        color: $grey3
 
                 //Item Hover
                 &:hover
@@ -117,7 +145,7 @@
         display: flex
         align-items: center
         justify-content: center
-        .add-button
+        .buttons
             display: none
         .container
             width: 90%
