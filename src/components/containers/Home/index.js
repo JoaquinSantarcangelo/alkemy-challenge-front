@@ -13,7 +13,7 @@ const Home = ({ items, balance }) => {
           </div>
           <div className="amount">${balance}</div>
         </div>
-        <Items items={items} title="Last Transactions" />
+        <Items items={items.slice(0, 9)} title="Last Transactions" more />
       </div>
     </div>
   );

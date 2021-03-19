@@ -24,6 +24,16 @@ const App = () => {
     { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
     { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
     { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
   ]);
   const [balance, setBalance] = useState(100.55);
 
@@ -32,6 +42,7 @@ const App = () => {
       <Router>
         {loggedIn && <Navbar setLoggedIn={setLoggedIn} />}
         <Switch>
+          {/* Login */}
           <Route
             path="/login"
             render={() =>
@@ -42,10 +53,14 @@ const App = () => {
               )
             }
           ></Route>
+
+          {/* Register */}
           <Route
             path="/register"
             render={() => (!loggedIn ? <Register /> : <Redirect to="/" />)}
           ></Route>
+
+          {/* Home */}
           <Route
             path="/"
             exact
@@ -57,10 +72,14 @@ const App = () => {
               )
             }
           ></Route>
+
+          {/* ABM */}
           <Route
             path="/abm"
             exact
-            render={() => (!loggedIn ? <Redirect to="/login" /> : <ABM />)}
+            render={() =>
+              !loggedIn ? <Redirect to="/login" /> : <ABM items={items} />
+            }
           ></Route>
         </Switch>
       </Router>

@@ -3,10 +3,9 @@
 .home
     width: 100%
     min-height: 100vh
-
     display: grid
     place-items: center
-    color: $light0
+    
     overflow: hidden
 
     //Container
@@ -22,7 +21,7 @@
             display: flex
             align-items: center
             justify-content: space-between
-
+            color: $light0
             //Text
             .text
                 font-size: 1.5em
@@ -34,91 +33,6 @@
             .amount
                 font-size: 2em
                 font-weight: 600
-
-        //Items
-        .items
-            margin-top: 3em
-            width: 100%
-            height: auto
-
-            // Section Title
-            .wrapper
-                display: flex
-                align-items: center
-                justify-content: space-between
-                h1
-                    font-size: 1.5em
-                    font-weight: 600
-                .more-button
-                    border: 1px solid $light0
-                    padding: 0.25em
-                    font-size: 1.5em
-                    border-radius: 0.25em
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    transition: all 0.4s ease
-                    &:hover
-                        cursor: pointer
-                        background-color: $light0
-                        color: $grey0
-
-            //Transaction Item
-            .item
-                padding: 1.5em 2em
-                margin-bottom: 1em
-                width: 100%
-                background-color: $grey1
-                border-radius: 0.66em
-                display: flex
-                align-items: center
-                justify-content: space-between
-                transition: all 0.4s ease
-
-                .wrapper-left
-                    //Title
-                    .title
-                        font-size: 1.5em
-
-                    //Type
-                    .type
-                        margin-top: 0.5em
-                        padding: 0.25em 1em
-                        border-radius: 0.33em
-                        border: 1px solid $light0
-                        text-transform: uppercase
-                        transition: all 0.4s ease
-                        &:hover
-                            color: $grey0
-                            background-color: $light0
-
-                .wrapper-right
-                    display: flex
-                    flex-direction: column
-                    align-items: flex-end
-                    //Amount
-                    .amount
-                        font-size: 1.5em
-                        color: $green
-                        &::before
-                            content: "+"
-                    .negative
-                        color: $red
-                        &::before
-                            content: "-"
-
-                    //Date
-                    .date
-                        margin-top: 0.35rem
-                        display: flex
-                        align-items: flex-end
-                        display: block
-                        color: $grey3
-
-                //Item Hover
-                &:hover
-                    background-color: $grey2
-                    transform: scale(1.025)
 
     //Media Queries
     @media screen and ( max-width: 768px )

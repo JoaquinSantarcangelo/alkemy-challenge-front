@@ -15,6 +15,7 @@ import "./sass/ABM.sass";
 
 // -- Components -- //
 import "./sass/Navbar.sass"
+import "./sass/Items.sass"
 
 ReactDOM.render(
   <React.StrictMode>

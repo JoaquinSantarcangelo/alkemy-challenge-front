@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //Icons
 import { BiPlus } from "react-icons/bi";
 
-const Items = ({ items, title }) => {
+const Items = ({ items, title, more }) => {
   const Item = ({ itemInfo }) => {
     return (
       <div className="item">
@@ -27,9 +27,11 @@ const Items = ({ items, title }) => {
     <div className="items">
       <div className="wrapper">
         <h1 className="title">{title}</h1>
-        <Link to="/abm" className="more-button">
-          <BiPlus />
-        </Link>
+        {more && (
+          <Link to="/abm" className="more-button">
+            <BiPlus />
+          </Link>
+        )}
       </div>
       {items.map((item) => (
         <Item itemInfo={item} />
