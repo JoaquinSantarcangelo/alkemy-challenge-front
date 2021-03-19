@@ -1,7 +1,11 @@
 import React from "react";
 
 const index = () => {
-  return <div className="container"><h1>ABM</h1></div>;
+  return (
+    <div className="container">
+      <div className="form"></div>
+    </div>
+  );
 };
 
 export default index;

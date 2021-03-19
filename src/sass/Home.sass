@@ -42,9 +42,26 @@
             height: auto
 
             // Section Title
-            h1
-                font-size: 1.5em
-                font-weight: 600
+            .wrapper
+                display: flex
+                align-items: center
+                justify-content: space-between
+                h1
+                    font-size: 1.5em
+                    font-weight: 600
+                .more-button
+                    border: 1px solid $light0
+                    padding: 0.25em
+                    font-size: 1.5em
+                    border-radius: 0.25em
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    transition: all 0.4s ease
+                    &:hover
+                        cursor: pointer
+                        background-color: $light0
+                        color: $grey0
 
             //Transaction Item
             .item
@@ -103,8 +120,6 @@
                     background-color: $grey2
                     transform: scale(1.025)
 
-
-    
     //Media Queries
     @media screen and ( max-width: 768px )
         display: flex

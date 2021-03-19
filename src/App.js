@@ -16,7 +16,16 @@ import ABM from "./components/containers/ABM";
 import Navbar from "./components/Navbar";
 
 const App = () => {
+  //Hooks - useState
   const [loggedIn, setLoggedIn] = useState(false);
+  const [items, setItems] = useState([
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+    { title: "Title", amount: -55.6, type: "Fun", date: new Date() },
+    { title: "Title", amount: 255.2, type: "Taxes", date: new Date() },
+  ]);
+  const [balance, setBalance] = useState(100.55);
 
   return (
     <div className="app">
@@ -40,7 +49,13 @@ const App = () => {
           <Route
             path="/"
             exact
-            render={() => (!loggedIn ? <Redirect to="/login" /> : <Home />)}
+            render={() =>
+              !loggedIn ? (
+                <Redirect to="/login" />
+              ) : (
+                <Home items={items} balance={balance} />
+              )
+            }
           ></Route>
           <Route
             path="/abm"
