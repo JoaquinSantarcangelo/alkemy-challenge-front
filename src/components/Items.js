@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+
 //Icons
 import { BiPlus } from "react-icons/bi";
 
@@ -9,10 +11,14 @@ const Items = ({ items, title, more }) => {
       <div className="item">
         <div className="wrapper-left">
           <div className="title">{itemInfo.desc}</div>
-          <div className="type">{itemInfo.type}</div>
+          <div className="type">{itemInfo.category}</div>
         </div>
         <div className="wrapper-right">
-          <div className={itemInfo.amount > 0 ? "amount" : "amount negative"}>
+          <div
+            className={
+              itemInfo.type === "inbound" ? "amount" : "amount negative"
+            }
+          >
             ${Math.abs(itemInfo.amount)}
           </div>
           <div className="date">

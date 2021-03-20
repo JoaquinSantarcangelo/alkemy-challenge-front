@@ -1,43 +1,77 @@
 import React, { useState } from "react";
 
-const Form = ({ addTransaction }) => {
-  const [desc, setDesc] = useState("");
-  const [type, setType] = useState("Taxes");
+//Icons
+import { BiCheck } from "react-icons/bi";
+
+const Form = ({ addTransaction, action }) => {
+  const [desc, setDesc] = useState(null);
+  const [type, setType] = useState("Inbound");
+  const [category, setCategory] = useState("Taxes");
   const [amount, setAmount] = useState(null);
   const [date, setDate] = useState(null);
 
+  //Handle Form Submit
   const handleForm = () => {
     console.log("Adding new transaction");
     let newTransaction;
     //Validation
-    if (true) {
-      newTransaction = {
-        desc,
-        amount,
-        type,
-        date: new Date(date),
-      };
+    if (desc && type && category && amount && date) {
+      console.log("Yep");
+      if (desc !== "" && amount > 0) {
+        newTransaction = {
+          desc,
+          amount,
+          type,
+          category,
+          date: new Date(date),
+        };
+      }
     }
 
-    console.log(newTransaction);
+    alert("Completa el formulario");
 
     if (newTransaction) {
+      console.log(newTransaction);
       addTransaction(newTransaction);
     }
   };
 
   return (
     <div className="form">
-      <input
-        type="text"
-        name="description"
-        id="description"
-        placeholder="Transaction description"
-        value={desc}
-        onChange={(e) => setDesc(e.target.value)}
-      />
-      <div className="wrapper">
-        <select id="type" name="cars" onChange={(e) => setType(e.target.value)}>
+      <h1>{action === "add" ? "Add Transaction" : "Edit Transaction"}</h1>
+      <div className="wrapper-top">
+        {action === "add" ? (
+          <select
+            id="type"
+            name="type"
+            onChange={(e) => setType(e.target.value)}
+            value={type}
+          >
+            <option value="inbound">Inbound</option>
+            <option value="outbound">Outbound</option>
+          </select>
+        ) : (
+          <select id="type" name="type" value={type} disabled>
+            <option value="inbound">Inbound</option>
+            <option value="outbound">Outbound</option>
+          </select>
+        )}
+        <input
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Transaction description"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+        />
+      </div>
+      <div className="wrapper-bottom">
+        <select
+          id="category"
+          name="category"
+          onChange={(e) => setCategory(e.target.value)}
+          value={category}
+        >
           <option value="taxes">Taxes</option>
           <option value="food">Food</option>
           <option value="health">Health</option>
@@ -59,7 +93,9 @@ const Form = ({ addTransaction }) => {
           onChange={(e) => setAmount(e.target.value)}
         />
       </div>
-      <button onClick={() => handleForm()}>Add transaction</button>
+      <div onClick={() => handleForm()} className="button">
+        <BiCheck /> Confirm
+      </div>
     </div>
   );
 };

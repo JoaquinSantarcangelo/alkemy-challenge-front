@@ -2,15 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap')
 
 //Colors
-$grey0: #131a22
+$grey0: #13181f
 $grey1: #1c293a
 $grey2: #283649
-$grey3: #b8c3ce
+$grey3: #bfcddb
 $green: #1dd1a1
 $blue: #2e86de
 $light0: #e2e2e2
 $red: #ee5253
 
+//Custom Normalize
 *,*::before, *::after
     box-sizing: border-box
 
@@ -38,8 +39,8 @@ a
         align-items: center
         justify-content: center
         flex-direction: column
-        
-//-- Inputs --
+
+// -- Inputs --
 input,
 select
     background-color: $grey3
@@ -47,17 +48,24 @@ select
     margin-bottom: 1rem
     border-radius: 0.33rem
     padding: 0.75rem 1rem
+    height: 100%
 
 // -- Button --
-button
-    margin-top: 1em
+.button
     border-radius: 0.33rem
-    padding: 0.75rem 1rem
+    padding: 0.75rem 2rem
     border: none
     background-color: transparent
     border: 2px solid $light0
     color: $light0
     transition: all 0.4s ease
+    display: flex
+    align-items: center
+    justify-content: center
+    svg
+        font-size: 1.25em
+        margin-right: 0.25em
+        
     &:hover
         background-color: $light0
         color: $grey1

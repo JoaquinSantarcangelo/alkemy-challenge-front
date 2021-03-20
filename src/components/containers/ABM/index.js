@@ -7,7 +7,7 @@ import Form from "../../Form";
 const ABM = ({ items, addTransaction }) => {
   return (
     <div className="container">
-      <Form addTransaction={addTransaction} />
+      <Form addTransaction={addTransaction} action="add" />
       <Items items={items} title="My transactions" />
     </div>
   );

@@ -30,7 +30,9 @@ const Login = ({ setLoggedIn }) => {
             onChange={(e) => setPw(e.target.value)}
             value={pw}
           />
-          <button onClick={() => handleLogin()}>Login</button>
+          <div className="button" onClick={() => handleLogin()}>
+            Login
+          </div>
         </div>
         <div className="info-text">
           <div className="text">
