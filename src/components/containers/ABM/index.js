@@ -4,11 +4,21 @@ import React from "react";
 import Items from "../../Items";
 import Form from "../../Form";
 
-const ABM = ({ items, addTransaction }) => {
+const ABM = ({
+  items,
+  addTransaction,
+  setEditModalOpen,
+  setActiveTransaction,
+}) => {
   return (
     <div className="container">
       <Form addTransaction={addTransaction} action="add" />
-      <Items items={items} title="My transactions" />
+      <Items
+        setActiveTransaction={setActiveTransaction}
+        setEditModalOpen={setEditModalOpen}
+        items={items}
+        title="My transactions"
+      />
     </div>
   );
 };

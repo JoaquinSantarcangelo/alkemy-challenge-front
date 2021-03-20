@@ -55,7 +55,9 @@ const Register = () => {
             onChange={(e) => setPwCheck(e.target.value)}
             value={pwCheck}
           />
-          <button onClick={() => handleRegister()}>Create account</button>
+          <div className="button" onClick={() => handleRegister()}>
+            Create account
+          </div>
         </div>
         <div className="info-text">
           <div className="text">

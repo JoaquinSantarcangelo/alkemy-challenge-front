@@ -14,6 +14,7 @@ import ABM from "./components/containers/ABM";
 
 //Components
 import Navbar from "./components/Navbar";
+import Form from "./components/Form";
 
 const App = () => {
   //Hooks - useState
@@ -57,19 +58,32 @@ const App = () => {
   ]);
   const [balance, setBalance] = useState(100.55);
 
+  // -- Modal State
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [activeTransaction, setActiveTransaction] = useState(items[0]);
+
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
     console.log(transaction);
     setItems([...items, transaction]);
   };
 
-  const handleEditTransaction = (transaction) => {
-    
-  }
+  const handleEditTransaction = (transaction) => {};
 
   return (
     <div className="app">
       <Router>
+        {editModalOpen && (
+          <div className="modal">
+            <div className="card">
+              <Form
+                setEditModalOpen={setEditModalOpen}
+                activeTransaction={activeTransaction}
+                action="edit"
+              />
+            </div>
+          </div>
+        )}
         {loggedIn && <Navbar setLoggedIn={setLoggedIn} />}
         <Switch>
           {/* Login */}
@@ -111,7 +125,12 @@ const App = () => {
               !loggedIn ? (
                 <Redirect to="/login" />
               ) : (
-                <ABM addTransaction={addTransaction} items={items} />
+                <ABM
+                  addTransaction={addTransaction}
+                  items={items}
+                  setEditModalOpen={setEditModalOpen}
+                  setActiveTransaction={setActiveTransaction}
+                />
               )
             }
           ></Route>

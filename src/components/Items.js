@@ -1,14 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 //Icons
 import { BiPlus } from "react-icons/bi";
 
-const Items = ({ items, title, more }) => {
+const Items = ({
+  items,
+  title,
+  more,
+  setActiveTransaction,
+  setEditModalOpen,
+}) => {
   const Item = ({ itemInfo }) => {
     return (
-      <div className="item">
+      <div
+        onClick={() => {
+          setActiveTransaction(itemInfo);
+          setEditModalOpen(true);
+        }}
+        className="item"
+      >
         <div className="wrapper-left">
           <div className="title">{itemInfo.desc}</div>
           <div className="type">{itemInfo.category}</div>

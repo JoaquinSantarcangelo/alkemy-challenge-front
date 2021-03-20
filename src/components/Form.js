@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //Icons
-import { BiCheck } from "react-icons/bi";
+import { BiCheck, BiX } from "react-icons/bi";
 
-const Form = ({ addTransaction, action }) => {
+const Form = ({
+  addTransaction,
+  action,
+  setEditModalOpen,
+  activeTransaction,
+}) => {
   const [desc, setDesc] = useState(null);
   const [type, setType] = useState("Inbound");
   const [category, setCategory] = useState("Taxes");
@@ -36,9 +41,35 @@ const Form = ({ addTransaction, action }) => {
     }
   };
 
+  //Edit Auto Fill
+  useEffect(() => {
+    if (activeTransaction) {
+      if (activeTransaction.desc) {
+        setDesc(activeTransaction.desc);
+      }
+      if (activeTransaction.type) {
+        setType(activeTransaction.desc);
+      }
+      if (activeTransaction.category) {
+        setCategory(activeTransaction.category);
+      }
+      if (activeTransaction.amount) {
+        setAmount(activeTransaction.amount);
+      }
+      if (activeTransaction.date) {
+        setDate(activeTransaction.date);
+      }
+    }
+  }, []);
   return (
     <div className="form">
+      {action === "edit" && (
+        <div onClick={() => setEditModalOpen(false)} className="close-icon">
+          <BiX />
+        </div>
+      )}
       <h1>{action === "add" ? "Add Transaction" : "Edit Transaction"}</h1>
+
       <div className="wrapper-top">
         {action === "add" ? (
           <select
