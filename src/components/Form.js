@@ -57,7 +57,7 @@ const Form = ({
         setAmount(activeTransaction.amount);
       }
       if (activeTransaction.date) {
-        setDate(activeTransaction.date);
+        setDate(new Date());
       }
     }
   }, []);
@@ -111,6 +111,7 @@ const Form = ({
         <input
           type="date"
           value={date}
+          placeholder={date}
           name="date"
           id="date"
           onChange={(e) => setDate(e.target.value)}

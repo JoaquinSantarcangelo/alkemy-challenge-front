@@ -32,9 +32,7 @@ const Items = ({
           >
             ${Math.abs(itemInfo.amount)}
           </div>
-          <div className="date">
-            {itemInfo.date.toISOString().substring(0, 10)}
-          </div>
+          <div className="date">{itemInfo.date.substring(0, 10)}</div>
         </div>
       </div>
     );

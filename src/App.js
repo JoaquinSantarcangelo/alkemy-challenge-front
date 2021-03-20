@@ -19,43 +19,7 @@ import Form from "./components/Form";
 const App = () => {
   //Hooks - useState
   const [loggedIn, setLoggedIn] = useState(true);
-  const [items, setItems] = useState([
-    {
-      desc: "Monotributo",
-      amount: 255.2,
-      type: "outbound",
-      category: "taxes",
-      date: new Date(),
-    },
-    {
-      desc: "Impuesto a las ganancias",
-      amount: 55.52,
-      type: "inbound",
-      category: "taxes",
-      date: new Date(),
-    },
-    {
-      desc: "Juego en Steam",
-      amount: 1255.2,
-      type: "outbound",
-      category: "fun",
-      date: new Date(),
-    },
-    {
-      desc: "Mc Donalds Combo Triple Queso",
-      amount: 555,
-      type: "outbound",
-      category: "food",
-      date: new Date(),
-    },
-    {
-      desc: "Ibuprofeno 400 2mg",
-      amount: 155,
-      type: "outbound",
-      category: "health",
-      date: new Date(),
-    },
-  ]);
+  const [items, setItems] = useState([]);
   const [balance, setBalance] = useState(100.55);
 
   // -- Modal State
@@ -69,6 +33,15 @@ const App = () => {
   };
 
   const handleEditTransaction = (transaction) => {};
+
+  //Fetching Data from DB
+  useEffect(() => {
+    fetch("http://localhost:5000/api/transactions").then(async (res) => {
+      const auxItems = await res.json();
+      console.log(auxItems);
+      setItems(auxItems)
+    });
+  }, []);
 
   return (
     <div className="app">
