@@ -20,7 +20,7 @@ const App = () => {
   //Hooks - useState
   const [loggedIn, setLoggedIn] = useState(true);
   const [items, setItems] = useState([]);
-  const [balance, setBalance] = useState(100.55);
+  const [balance, setBalance] = useState(0);
 
   // -- Modal State
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -29,19 +29,42 @@ const App = () => {
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
     console.log(transaction);
-    setItems([...items, transaction]);
+    setItems([transaction, ...items]);
   };
 
   const handleEditTransaction = (transaction) => {};
 
+  //Calculate Balance Function
+  const calculateBalance = async () => {
+    let aux = 0;
+    await items.forEach((i) => {
+      if (i.type === "inbound") {
+        aux += i.amount;
+      } else {
+        aux -= i.amount;
+      }
+    });
+    return aux.toFixed(2);
+  };
+
   //Fetching Data from DB
   useEffect(() => {
+    //Fetching Transactions
     fetch("http://localhost:5000/api/transactions").then(async (res) => {
       const auxItems = await res.json();
       console.log(auxItems);
-      setItems(auxItems)
+      setItems(auxItems.reverse());
     });
   }, []);
+
+  //Calculate Balance
+  useEffect(() => {
+    if (items.length > 0) {
+      calculateBalance().then((res) => {
+        setBalance(res);
+      });
+    }
+  }, [items]);
 
   return (
     <div className="app">
@@ -85,7 +108,12 @@ const App = () => {
               !loggedIn ? (
                 <Redirect to="/login" />
               ) : (
-                <Home items={items} balance={balance} />
+                <Home
+                  items={items}
+                  balance={balance}
+                  setEditModalOpen={setEditModalOpen}
+                  setActiveTransaction={setActiveTransaction}
+                />
               )
             }
           ></Route>

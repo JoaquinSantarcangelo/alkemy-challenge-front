@@ -28,20 +28,20 @@ const Form = ({
           amount,
           type,
           category,
-          date: new Date(date),
+          date: date,
         };
       }
     }
 
-    alert("Completa el formulario");
-
     if (newTransaction) {
       console.log(newTransaction);
       addTransaction(newTransaction);
+    } else {
+      alert("Completa el formulario");
     }
   };
 
-  //Edit Auto Fill
+  //Edit Form Auto Fill
   useEffect(() => {
     if (activeTransaction) {
       if (activeTransaction.desc) {
