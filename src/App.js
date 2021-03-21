@@ -28,6 +28,16 @@ const App = () => {
 
   // Database Communication
   // Database Communication // Transactions
+
+  // -- Get Transactions -- //
+  const getTransactions = () => {
+    fetch("http://localhost:5000/api/transactions").then(async (res) => {
+      const auxItems = await res.json();
+      console.log(auxItems);
+      setItems(auxItems.reverse());
+    });
+  };
+
   // -- Add Transaction -- //
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
@@ -40,9 +50,11 @@ const App = () => {
     };
 
     fetch("http://localhost:5000/api/transactions", requestOptions).then(
-      (response) => {
-        setItems([transaction, ...items]);
-        console.log(response);
+      (res) => {
+        if (res.status === 200) {
+          getTransactions();
+          console.log(res);
+        }
       }
     );
   };
@@ -55,10 +67,29 @@ const App = () => {
       method: "DELETE",
     }).then((res) => {
       if (res.status === 200) {
-        const newItems = items.filter(
-          (item) => item.id !== activeTransaction.id
-        );
-        setItems(newItems);
+        getTransactions();
+        setEditModalOpen(false);
+      }
+    });
+  };
+
+  // -- Edit Transaction -- //
+  const editTransaction = (transaction) => {
+    console.log("Editing transaction");
+
+    //Fetch Options
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(transaction),
+    };
+
+    fetch(
+      `http://localhost:5000/api/transactions/${activeTransaction.id}`,
+      requestOptions
+    ).then((res) => {
+      if (res.status === 200) {
+        getTransactions();
         setEditModalOpen(false);
       }
     });
@@ -121,11 +152,7 @@ const App = () => {
   //Fetching Data from DB
   useEffect(() => {
     //Fetching Transactions
-    fetch("http://localhost:5000/api/transactions").then(async (res) => {
-      const auxItems = await res.json();
-      console.log(auxItems);
-      setItems(auxItems.reverse());
-    });
+    getTransactions();
   }, []);
 
   //Calculate Balance
@@ -145,6 +172,7 @@ const App = () => {
                 setEditModalOpen={setEditModalOpen}
                 activeTransaction={activeTransaction}
                 deleteTransaction={deleteTransaction}
+                editTransaction={editTransaction}
                 action="edit"
               />
             </div>

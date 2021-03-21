@@ -5,6 +5,7 @@ import { BiCheck, BiX, BiTrash } from "react-icons/bi";
 
 const Form = ({
   addTransaction,
+  editTransaction,
   deleteTransaction,
   setEditModalOpen,
   activeTransaction,
@@ -21,6 +22,7 @@ const Form = ({
     console.log("Adding new transaction");
     let newTransaction;
     //Validation
+
     if (description && type && category && amount && date) {
       console.log("Yep");
       if (description !== "" && amount > 0) {
@@ -29,14 +31,18 @@ const Form = ({
           amount,
           type,
           category,
-          date: date,
+          date,
         };
       }
     }
 
     if (newTransaction) {
       console.log(newTransaction);
-      addTransaction(newTransaction);
+      if (action === "add") {
+        addTransaction(newTransaction);
+      } else {
+        editTransaction(newTransaction);
+      }
     } else {
       alert("Completa el formulario");
     }
@@ -58,7 +64,10 @@ const Form = ({
         setAmount(activeTransaction.amount);
       }
       if (activeTransaction.date) {
-        setDate(new Date());
+        setDate(activeTransaction.date.substring(0, 10));
+        document.getElementById("date").valueAsDate = new Date(
+          activeTransaction.date
+        );
       }
     }
   }, []);
@@ -111,8 +120,6 @@ const Form = ({
         </select>
         <input
           type="date"
-          value={date}
-          placeholder={date}
           name="date"
           id="date"
           onChange={(e) => setDate(e.target.value)}
