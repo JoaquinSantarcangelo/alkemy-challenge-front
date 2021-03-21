@@ -9,10 +9,10 @@ const Form = ({
   setEditModalOpen,
   activeTransaction,
 }) => {
-  const [desc, setDesc] = useState(null);
-  const [type, setType] = useState("Inbound");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("inbound");
   const [category, setCategory] = useState("Taxes");
-  const [amount, setAmount] = useState(null);
+  const [amount, setAmount] = useState(0);
   const [date, setDate] = useState(null);
 
   //Handle Form Submit
@@ -20,11 +20,11 @@ const Form = ({
     console.log("Adding new transaction");
     let newTransaction;
     //Validation
-    if (desc && type && category && amount && date) {
+    if (description && type && category && amount && date) {
       console.log("Yep");
-      if (desc !== "" && amount > 0) {
+      if (description !== "" && amount > 0) {
         newTransaction = {
-          desc,
+          description,
           amount,
           type,
           category,
@@ -44,11 +44,11 @@ const Form = ({
   //Edit Form Auto Fill
   useEffect(() => {
     if (activeTransaction) {
-      if (activeTransaction.desc) {
-        setDesc(activeTransaction.desc);
+      if (activeTransaction.description) {
+        setDescription(activeTransaction.description);
       }
       if (activeTransaction.type) {
-        setType(activeTransaction.desc);
+        setType(activeTransaction.type);
       }
       if (activeTransaction.category) {
         setCategory(activeTransaction.category);
@@ -92,8 +92,8 @@ const Form = ({
           name="description"
           id="description"
           placeholder="Transaction description"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <div className="wrapper-bottom">

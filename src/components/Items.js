@@ -22,7 +22,7 @@ const Items = ({
         className="item"
       >
         <div className="wrapper-left">
-          <div className="title">{itemInfo.desc}</div>
+          <div className="title">{itemInfo.description}</div>
           <div className="type">{itemInfo.category}</div>
         </div>
         <div className="wrapper-right">

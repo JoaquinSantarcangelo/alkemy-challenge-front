@@ -30,6 +30,17 @@ const App = () => {
     console.log("Sending new transaction");
     console.log(transaction);
     setItems([transaction, ...items]);
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(transaction),
+    };
+
+    fetch(
+      "http://localhost:5000/api/transactions",
+      requestOptions
+    ).then((response) => console.log(response));
   };
 
   const handleEditTransaction = (transaction) => {};
