@@ -27,11 +27,10 @@ const App = () => {
   const [activeTransaction, setActiveTransaction] = useState(items[0]);
 
   // Database Communication
-
+  // Database Communication // Transactions
   // -- Add Transaction -- //
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
-    console.log(transaction);
 
     //Fetch Options
     const requestOptions = {
@@ -48,6 +47,24 @@ const App = () => {
     );
   };
 
+  // -- Delete Transaction -- //
+  const deleteTransaction = () => {
+    console.log("Deleting transaction");
+
+    fetch(`http://localhost:5000/api/transactions/${activeTransaction.id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.status === 200) {
+        const newItems = items.filter(
+          (item) => item.id !== activeTransaction.id
+        );
+        setItems(newItems);
+        setEditModalOpen(false);
+      }
+    });
+  };
+
+  // Database Communication // Accounts
   // -- Login -- //
   const login = (user) => {
     console.log("Logging in");
@@ -87,19 +104,18 @@ const App = () => {
     );
   };
 
-  const editTransaction = (transaction) => {};
-
   //Calculate Balance Function
   const calculateBalance = async () => {
     let aux = 0;
-    await items.forEach((i) => {
+    items.forEach((i) => {
       if (i.type === "inbound") {
-        aux += i.amount;
+        aux = parseFloat(aux) + parseFloat(i.amount);
       } else {
-        aux -= i.amount;
+        aux = parseFloat(aux) - parseFloat(i.amount);
       }
     });
-    return aux.toFixed(2);
+
+    setBalance(aux);
   };
 
   //Fetching Data from DB
@@ -115,9 +131,7 @@ const App = () => {
   //Calculate Balance
   useEffect(() => {
     if (items.length > 0) {
-      calculateBalance().then((res) => {
-        setBalance(res);
-      });
+      calculateBalance();
     }
   }, [items]);
 
@@ -130,6 +144,7 @@ const App = () => {
               <Form
                 setEditModalOpen={setEditModalOpen}
                 activeTransaction={activeTransaction}
+                deleteTransaction={deleteTransaction}
                 action="edit"
               />
             </div>

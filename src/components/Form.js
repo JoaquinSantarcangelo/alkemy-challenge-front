@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 //Icons
-import { BiCheck, BiX } from "react-icons/bi";
+import { BiCheck, BiX, BiTrash } from "react-icons/bi";
 
 const Form = ({
   addTransaction,
-  action,
+  deleteTransaction,
   setEditModalOpen,
   activeTransaction,
+  action,
 }) => {
   const [description, setDescription] = useState("");
   const [type, setType] = useState("inbound");
@@ -125,8 +126,15 @@ const Form = ({
           onChange={(e) => setAmount(e.target.value)}
         />
       </div>
-      <div onClick={() => handleForm()} className="button">
-        <BiCheck /> Confirm
+      <div className="buttons">
+        <div onClick={() => handleForm()} className="button">
+          <BiCheck /> Confirm
+        </div>
+        {action === "edit" && (
+          <div onClick={() => deleteTransaction()} className="button">
+            <BiTrash />
+          </div>
+        )}
       </div>
     </div>
   );
