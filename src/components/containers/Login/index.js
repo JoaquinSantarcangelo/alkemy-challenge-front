@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ login }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 
   const handleLogin = () => {
-    setLoggedIn(true);
+    login({ email, pw });
   };
 
   return (

@@ -26,24 +26,47 @@ const App = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [activeTransaction, setActiveTransaction] = useState(items[0]);
 
+  // Database Communication
+
+  // -- Add Transaction -- //
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
     console.log(transaction);
-    setItems([transaction, ...items]);
 
+    //Fetch Options
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(transaction),
     };
 
-    fetch(
-      "http://localhost:5000/api/transactions",
-      requestOptions
-    ).then((response) => console.log(response));
+    fetch("http://localhost:5000/api/transactions", requestOptions).then(
+      (response) => {
+        setItems([transaction, ...items]);
+        console.log(response);
+      }
+    );
   };
 
-  const handleEditTransaction = (transaction) => {};
+  // -- Login -- //
+  const login = (user) => {
+    console.log(user);
+
+    //Fetch Options
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    };
+
+    fetch("http://localhost:5000/api/accounts/login", requestOptions).then(
+      (response) => {
+        console.log(response);
+      }
+    );
+  };
+
+  const editTransaction = (transaction) => {};
 
   //Calculate Balance Function
   const calculateBalance = async () => {
@@ -98,7 +121,7 @@ const App = () => {
             path="/login"
             render={() =>
               !loggedIn ? (
-                <Login setLoggedIn={setLoggedIn} />
+                <Login login={login} setLoggedIn={setLoggedIn} />
               ) : (
                 <Redirect to="/" />
               )
