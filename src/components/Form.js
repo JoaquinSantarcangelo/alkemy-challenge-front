@@ -14,7 +14,7 @@ const Form = ({
   const [description, setDescription] = useState("");
   const [type, setType] = useState("inbound");
   const [category, setCategory] = useState("Taxes");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(null);
   const [date, setDate] = useState(null);
 
   //Handle Form Submit
