@@ -11,10 +11,10 @@ const Items = ({
   setActiveTransaction,
   setEditModalOpen,
 }) => {
-  const Item = ({ itemInfo, i }) => {
+  const Item = ({ itemInfo }) => {
     return (
       <div
-        key={i}
+        key={itemInfo.id}
         onClick={() => {
           setActiveTransaction(itemInfo);
           setEditModalOpen(true);
@@ -49,8 +49,8 @@ const Items = ({
           </Link>
         )}
       </div>
-      {items.map((item, i) => (
-        <Item itemInfo={item} key={i} />
+      {items.map((item) => (
+        <Item itemInfo={item} />
       ))}
     </div>
   );
