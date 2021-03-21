@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Register = () => {
+const Register = ({ register }) => {
   const [email, setEmail] = useState("");
   const [emailCheck, setEmailCheck] = useState("");
   const [pw, setPw] = useState("");
   const [pwCheck, setPwCheck] = useState("");
   const [name, setName] = useState("");
 
-  const handleRegister = () => {};
+  const handleRegister = () => {
+    //Validation
+    let valStatus = false;
+    if (name.length > 5 && email !== "" && pw !== "" && name !== "") {
+      if (email === emailCheck && pw === pwCheck) {
+        register({ email, pw, name });
+      } else {
+        alert("Please confirm if email and password matches ");
+      }
+    } else {
+      alert("Please fill all inputs");
+    }
+  };
 
   return (
     <div className="login">

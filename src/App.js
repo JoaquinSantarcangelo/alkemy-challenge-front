@@ -18,7 +18,7 @@ import Form from "./components/Form";
 
 const App = () => {
   //Hooks - useState
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [balance, setBalance] = useState(0);
 
@@ -50,6 +50,7 @@ const App = () => {
 
   // -- Login -- //
   const login = (user) => {
+    console.log("Logging in");
     console.log(user);
 
     //Fetch Options
@@ -60,6 +61,26 @@ const App = () => {
     };
 
     fetch("http://localhost:5000/api/accounts/login", requestOptions).then(
+      (response) => {
+        console.log(response);
+        setLoggedIn(true);
+      }
+    );
+  };
+
+  // -- Register -- //
+  const register = (user) => {
+    console.log("Signing up");
+    console.log(user);
+
+    //Fetch Options
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    };
+
+    fetch("http://localhost:5000/api/accounts/register", requestOptions).then(
       (response) => {
         console.log(response);
       }
@@ -131,7 +152,9 @@ const App = () => {
           {/* Register */}
           <Route
             path="/register"
-            render={() => (!loggedIn ? <Register /> : <Redirect to="/" />)}
+            render={() =>
+              !loggedIn ? <Register register={register} /> : <Redirect to="/" />
+            }
           ></Route>
 
           {/* Home */}
