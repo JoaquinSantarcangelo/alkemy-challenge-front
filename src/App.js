@@ -100,6 +100,7 @@ const App = () => {
   const login = (user) => {
     console.log("Logging in");
     console.log(user);
+    setLoggedIn(true);
 
     //Fetch Options
     const requestOptions = {
