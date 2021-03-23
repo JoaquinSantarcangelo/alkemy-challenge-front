@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 1 },
+  },
+  exit: { opacity: 0 },
+};
 
 const Login = ({ login }) => {
   const [email, setEmail] = useState("");
@@ -10,8 +20,14 @@ const Login = ({ login }) => {
   };
 
   return (
-    <div className="login">
-      <div className="card">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="login"
+    >
+      <motion.div variants={variants} className="card">
         <h1>Welcome!</h1>
         <div className="wrapper">
           <input
@@ -39,8 +55,8 @@ const Login = ({ login }) => {
             Don't have an account yet? <Link to="/register">Create one!</Link>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 //Containers
 import Login from "./components/containers/Login";
@@ -16,17 +17,38 @@ import ABM from "./components/containers/ABM";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 const App = () => {
   //Hooks - useState
   const [loggedIn, setLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [balance, setBalance] = useState(0);
 
+  // Hooks - useEffect
+
+  // // Fetching Data from DB
+  useEffect(() => {
+    //Fetching Transactions
+    getTransactions();
+  }, []);
+
+  // // Calculate Balance
+  useEffect(() => {
+    if (items.length > 0) {
+      calculateBalance();
+    }
+  }, [items]);
+
   // -- Modal State
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [activeTransaction, setActiveTransaction] = useState(items[0]);
 
-  // Database Communication
+  // Database Communication {Starts}
   // Database Communication // Transactions
 
   // -- Get Transactions -- //
@@ -150,93 +172,102 @@ const App = () => {
     setBalance(aux);
   };
 
-  //Fetching Data from DB
-  useEffect(() => {
-    //Fetching Transactions
-    getTransactions();
-  }, []);
-
-  //Calculate Balance
-  useEffect(() => {
-    if (items.length > 0) {
-      calculateBalance();
-    }
-  }, [items]);
+  // Database Communication {Ends}
 
   return (
     <div className="app">
       <Router>
-        {editModalOpen && (
-          <div className="modal">
-            <div className="card">
-              <Form
-                setEditModalOpen={setEditModalOpen}
-                activeTransaction={activeTransaction}
-                deleteTransaction={deleteTransaction}
-                editTransaction={editTransaction}
-                action="edit"
-              />
-            </div>
-          </div>
-        )}
+        {/* Edit Modal */}
+        <AnimatePresence>
+          {editModalOpen && (
+            <motion.div
+              variants={variants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="modal"
+            >
+              <div className="card">
+                <Form
+                  setEditModalOpen={setEditModalOpen}
+                  activeTransaction={activeTransaction}
+                  deleteTransaction={deleteTransaction}
+                  editTransaction={editTransaction}
+                  action="edit"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {/* Navbar */}
         {loggedIn && <Navbar setLoggedIn={setLoggedIn} />}
-        <Switch>
-          {/* Login */}
-          <Route
-            path="/login"
-            render={() =>
-              !loggedIn ? (
-                <Login login={login} setLoggedIn={setLoggedIn} />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
-          ></Route>
+        <Route
+          render={({ location }) => (
+            <AnimatePresence exitBeforeEnter>
+              <Switch location={location} key={location.pathname}>
+                {/* Login */}
+                <Route
+                  path="/login"
+                  render={() =>
+                    !loggedIn ? (
+                      <Login login={login} setLoggedIn={setLoggedIn} />
+                    ) : (
+                      <Redirect to="/" />
+                    )
+                  }
+                ></Route>
 
-          {/* Register */}
-          <Route
-            path="/register"
-            render={() =>
-              !loggedIn ? <Register register={register} /> : <Redirect to="/" />
-            }
-          ></Route>
+                {/* Register */}
+                <Route
+                  path="/register"
+                  render={() =>
+                    !loggedIn ? (
+                      <Register register={register} />
+                    ) : (
+                      <Redirect to="/" />
+                    )
+                  }
+                ></Route>
 
-          {/* Home */}
-          <Route
-            path="/"
-            exact
-            render={() =>
-              !loggedIn ? (
-                <Redirect to="/login" />
-              ) : (
-                <Home
-                  items={items}
-                  balance={balance}
-                  setEditModalOpen={setEditModalOpen}
-                  setActiveTransaction={setActiveTransaction}
-                />
-              )
-            }
-          ></Route>
+                {/* Home */}
+                <Route
+                  path="/"
+                  exact
+                  render={() =>
+                    !loggedIn ? (
+                      <Redirect to="/login" />
+                    ) : (
+                      <Home
+                        items={items}
+                        balance={balance}
+                        setEditModalOpen={setEditModalOpen}
+                        setActiveTransaction={setActiveTransaction}
+                      />
+                    )
+                  }
+                ></Route>
 
-          {/* ABM */}
-          <Route
-            path="/abm"
-            exact
-            render={() =>
-              !loggedIn ? (
-                <Redirect to="/login" />
-              ) : (
-                <ABM
-                  addTransaction={addTransaction}
-                  items={items}
-                  setEditModalOpen={setEditModalOpen}
-                  setActiveTransaction={setActiveTransaction}
-                />
-              )
-            }
-          ></Route>
-        </Switch>
+                {/* ABM */}
+                <Route
+                  path="/abm"
+                  exact
+                  render={() =>
+                    !loggedIn ? (
+                      <Redirect to="/login" />
+                    ) : (
+                      <ABM
+                        addTransaction={addTransaction}
+                        items={items}
+                        setEditModalOpen={setEditModalOpen}
+                        setActiveTransaction={setActiveTransaction}
+                      />
+                    )
+                  }
+                ></Route>
+              </Switch>
+            </AnimatePresence>
+          )}
+        />
       </Router>
     </div>
   );

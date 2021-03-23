@@ -1,8 +1,19 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 //Components
 import Items from "../../Items";
 import Form from "../../Form";
+
+//Framer Motion Variants
+const variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 1 },
+  },
+  exit: { opacity: 0 },
+};
 
 const ABM = ({
   items,
@@ -11,7 +22,13 @@ const ABM = ({
   setActiveTransaction,
 }) => {
   return (
-    <div className="container">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="container"
+    >
       <Form addTransaction={addTransaction} action="add" />
       <Items
         setActiveTransaction={setActiveTransaction}
@@ -19,7 +36,7 @@ const ABM = ({
         items={items}
         title="My transactions"
       />
-    </div>
+    </motion.div>
   );
 };
 

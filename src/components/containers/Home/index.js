@@ -1,11 +1,28 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 //Components
 import Items from "../../Items";
 
+//Framer Motion Variants
+const variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 1 },
+  },
+  exit: { opacity: 0, transition: { when: "afterChildren" } },
+};
+
 const Home = ({ items, balance, setEditModalOpen, setActiveTransaction }) => {
   return (
-    <div className="home">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="home"
+    >
       <div className="container">
         <div className="balance">
           <div className="text">
@@ -21,7 +38,7 @@ const Home = ({ items, balance, setEditModalOpen, setActiveTransaction }) => {
           setActiveTransaction={setActiveTransaction}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

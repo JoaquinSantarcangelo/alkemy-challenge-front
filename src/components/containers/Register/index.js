@@ -1,5 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+//Framer Motion Variants
+const variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 1 },
+  },
+  exit: { opacity: 0 },
+};
 
 const Register = ({ register }) => {
   const [email, setEmail] = useState("");
@@ -23,7 +34,13 @@ const Register = ({ register }) => {
   };
 
   return (
-    <div className="login">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="login"
+    >
       <div className="card">
         <h1>Register</h1>
         <div className="wrapper">
@@ -77,7 +94,7 @@ const Register = ({ register }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
