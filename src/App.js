@@ -26,6 +26,7 @@ const variants = {
 const App = () => {
   //Hooks - useState
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({ id: 1 });
   const [items, setItems] = useState([]);
   const [balance, setBalance] = useState(0);
 
@@ -34,8 +35,10 @@ const App = () => {
   // // Fetching Data from DB
   useEffect(() => {
     //Fetching Transactions
-    getTransactions();
-  }, []);
+    if (loggedIn) {
+      getTransactions();
+    }
+  }, [loggedIn]);
 
   // // Calculate Balance
   useEffect(() => {
@@ -53,16 +56,21 @@ const App = () => {
 
   // -- Get Transactions -- //
   const getTransactions = () => {
-    fetch("http://localhost:5000/api/transactions").then(async (res) => {
-      const auxItems = await res.json();
-      console.log(auxItems);
-      setItems(auxItems.reverse());
-    });
+    fetch(`http://localhost:5000/api/transactions/${user.id}`).then(
+      async (res) => {
+        const auxItems = await res.json();
+        console.log("Fetched items: ", auxItems);
+        setItems(auxItems.reverse());
+      }
+    );
   };
 
   // -- Add Transaction -- //
   const addTransaction = (transaction) => {
     console.log("Sending new transaction");
+
+    //Add user id
+    transaction.user_id = user.id;
 
     //Fetch Options
     const requestOptions = {
@@ -122,7 +130,7 @@ const App = () => {
   const login = (user) => {
     console.log("Logging in");
     console.log(user);
-    setLoggedIn(true);
+    // setLoggedIn(true);
 
     //Fetch Options
     const requestOptions = {
@@ -132,9 +140,12 @@ const App = () => {
     };
 
     fetch("http://localhost:5000/api/accounts/login", requestOptions).then(
-      (response) => {
-        console.log(response);
-        setLoggedIn(true);
+      async (response) => {
+        if (response.status === 200) {
+          const { user } = await response.json();
+          setUser(user);
+          setLoggedIn(true);
+        }
       }
     );
   };
@@ -153,7 +164,9 @@ const App = () => {
 
     fetch("http://localhost:5000/api/accounts/register", requestOptions).then(
       (response) => {
-        console.log(response);
+        if (response.status === 200) {
+          setLoggedIn(true);
+        }
       }
     );
   };
@@ -238,6 +251,7 @@ const App = () => {
                       <Redirect to="/login" />
                     ) : (
                       <Home
+                        user={user}
                         items={items}
                         balance={balance}
                         setEditModalOpen={setEditModalOpen}

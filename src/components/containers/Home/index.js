@@ -14,7 +14,15 @@ const variants = {
   exit: { opacity: 0, transition: { when: "afterChildren" } },
 };
 
-const Home = ({ items, balance, setEditModalOpen, setActiveTransaction }) => {
+const Home = ({
+  user,
+  items,
+  balance,
+  setEditModalOpen,
+  setActiveTransaction,
+}) => {
+  
+
   return (
     <motion.div
       variants={variants}
@@ -26,7 +34,8 @@ const Home = ({ items, balance, setEditModalOpen, setActiveTransaction }) => {
       <div className="container">
         <div className="balance">
           <div className="text">
-            Hi Joaquin! <br /> <span>Your balance:</span>
+            Hi {user.name}
+            <br /> <span>Your balance:</span>
           </div>
           <div className="amount">${balance}</div>
         </div>

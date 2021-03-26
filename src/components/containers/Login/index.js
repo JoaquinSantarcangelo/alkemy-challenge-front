@@ -16,7 +16,13 @@ const Login = ({ login }) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    login({ email, password });
+    //Validation
+    let valStatus = false;
+    if (email !== "" && password !== "") {
+      login({ email, password });
+    } else {
+      alert("Please fill all inputs");
+    }
   };
 
   return (
