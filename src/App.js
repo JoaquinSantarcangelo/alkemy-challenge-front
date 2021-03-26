@@ -126,11 +126,11 @@ const App = () => {
   };
 
   // Database Communication // Accounts
+
   // -- Login -- //
   const login = (user) => {
     console.log("Logging in");
     console.log(user);
-    // setLoggedIn(true);
 
     //Fetch Options
     const requestOptions = {
@@ -145,6 +145,10 @@ const App = () => {
           const { user } = await response.json();
           setUser(user);
           setLoggedIn(true);
+        } else {
+          document.getElementById("error-login").classList.remove("hidden");
+          document.getElementById("error-login").innerHTML =
+            "Credentials doesn't match";
         }
       }
     );

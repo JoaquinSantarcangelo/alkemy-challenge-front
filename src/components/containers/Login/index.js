@@ -14,14 +14,18 @@ const variants = {
 const Login = ({ login }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = () => {
     //Validation
     let valStatus = false;
     if (email !== "" && password !== "") {
+      document.getElementById("error-login").classList.add("hidden");
       login({ email, password });
     } else {
-      alert("Please fill all inputs");
+      document.getElementById("error-login").classList.remove("hidden");
+      document.getElementById("error-login").innerHTML =
+        "Please fill all the inputs";
     }
   };
 
@@ -33,6 +37,7 @@ const Login = ({ login }) => {
       exit="exit"
       className="login"
     >
+      <div id="error-login" className="error hidden"></div>
       <motion.div variants={variants} className="card">
         <h1>Welcome!</h1>
         <div className="wrapper">

@@ -24,12 +24,17 @@ const Register = ({ register }) => {
     let valStatus = false;
     if (name.length > 5 && email !== "" && password !== "" && name !== "") {
       if (email === emailCheck && password === pwCheck) {
+        document.getElementById("error-register").classList.add("hidden");
         register({ email, password, name });
       } else {
-        alert("Please confirm if email and password matches ");
+        document.getElementById("error-register").classList.remove("hidden");
+        document.getElementById("error-register").innerHTML =
+          "Please confirm if email and password matches ";
       }
     } else {
-      alert("Please fill all inputs");
+      document.getElementById("error-register").classList.remove("hidden");
+      document.getElementById("error-register").innerHTML =
+        "Please fill all the inputs";
     }
   };
 
@@ -41,6 +46,7 @@ const Register = ({ register }) => {
       exit="exit"
       className="login"
     >
+      <div id="error-register" className="error hidden"></div>
       <div className="card">
         <h1>Register</h1>
         <div className="wrapper">
