@@ -15,16 +15,16 @@ const variants = {
 const Register = ({ register }) => {
   const [email, setEmail] = useState("");
   const [emailCheck, setEmailCheck] = useState("");
-  const [pw, setPw] = useState("");
+  const [password, setPassword] = useState("");
   const [pwCheck, setPwCheck] = useState("");
   const [name, setName] = useState("");
 
   const handleRegister = () => {
     //Validation
     let valStatus = false;
-    if (name.length > 5 && email !== "" && pw !== "" && name !== "") {
-      if (email === emailCheck && pw === pwCheck) {
-        register({ email, pw, name });
+    if (name.length > 5 && email !== "" && password !== "" && name !== "") {
+      if (email === emailCheck && password === pwCheck) {
+        register({ email, password, name });
       } else {
         alert("Please confirm if email and password matches ");
       }
@@ -73,8 +73,8 @@ const Register = ({ register }) => {
             name="password"
             id="password"
             placeholder="Password"
-            onChange={(e) => setPw(e.target.value)}
-            value={pw}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
           <input
             type="password"

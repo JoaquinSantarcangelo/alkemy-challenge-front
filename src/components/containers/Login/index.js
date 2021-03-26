@@ -13,10 +13,10 @@ const variants = {
 
 const Login = ({ login }) => {
   const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    login({ email, pw });
+    login({ email, password });
   };
 
   return (
@@ -40,11 +40,11 @@ const Login = ({ login }) => {
           />
           <input
             type="password"
-            name=""
-            id=""
+            name="password"
+            id="password"
             placeholder="Password"
-            onChange={(e) => setPw(e.target.value)}
-            value={pw}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
           <div className="button" onClick={() => handleLogin()}>
             Login
