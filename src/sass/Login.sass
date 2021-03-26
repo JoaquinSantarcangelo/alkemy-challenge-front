@@ -15,7 +15,7 @@
         display: flex
         align-items: center
         justify-content: center
-        padding: 1em 
+        padding: 1em
         border-radius: 1em
         margin-bottom: 1em
         font-weight: 600
@@ -42,7 +42,6 @@
             flex-direction: column
             width: 100%
             margin-top: 1em
-            
 
         .info-text
             position: absolute
@@ -60,3 +59,15 @@
                     &:hover
                         transform: scale(1.1)
                         cursor: pointer
+
+        @media screen and ( max-width: 425px )
+            width: 95%
+        @media screen and ( max-width: 325px )
+            .info-text
+                .text
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    flex-direction: column
+                    a
+                        margin-bottom: -0.25em

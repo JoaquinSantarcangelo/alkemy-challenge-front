@@ -16,15 +16,16 @@
         color: $light0
     input
         width: 100%
+
     .wrapper-top
         width: 100%
         display: flex
         align-items: center
         justify-content: center
         #type
-            margin-right: 1em
 
         #description
+            margin-right: 1em
             width: 100%
     .wrapper-bottom
         display: flex
@@ -37,6 +38,8 @@
             margin-right: 1em
         #amount
             border-radius: 0.25em
+    .wrapper-resp
+        display: none
 
     .buttons
         display: flex
@@ -64,3 +67,24 @@
         top: 0.5em
         font-size: 2.5em
         cursor: pointer
+
+    @media screen and ( max-width: 550px )
+        .wrapper-top
+            #type
+                display: none
+            #description
+                margin-right: 0
+        .wrapper-bottom
+            #amount
+                display: none
+            #date
+                margin-right: 0
+                min-width: 0
+        .wrapper-resp
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: space-between
+            #type
+                margin-right: 1em
+        

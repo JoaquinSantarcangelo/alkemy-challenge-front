@@ -81,6 +81,14 @@ const Form = ({
       <h1>{action === "add" ? "Add Transaction" : "Edit Transaction"}</h1>
 
       <div className="wrapper-top">
+        <input
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Transaction description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
         {action === "add" ? (
           <select
             id="type"
@@ -97,14 +105,6 @@ const Form = ({
             <option value="outbound">Outbound</option>
           </select>
         )}
-        <input
-          type="text"
-          name="description"
-          id="description"
-          placeholder="Transaction description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
       </div>
       <div className="wrapper-bottom">
         <select
@@ -124,6 +124,32 @@ const Form = ({
           id="date"
           onChange={(e) => setDate(e.target.value)}
         />
+        <input
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+      </div>
+      <div className="wrapper-resp">
+        {action === "add" ? (
+          <select
+            id="type"
+            name="type"
+            onChange={(e) => setType(e.target.value)}
+            value={type}
+          >
+            <option value="inbound">Inbound</option>
+            <option value="outbound">Outbound</option>
+          </select>
+        ) : (
+          <select id="type" name="type" value={type} disabled>
+            <option value="inbound">Inbound</option>
+            <option value="outbound">Outbound</option>
+          </select>
+        )}
         <input
           type="number"
           name="amount"

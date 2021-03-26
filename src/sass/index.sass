@@ -19,6 +19,10 @@ body
     font-family: "Poppins", sans-serif
     color: $grey0
     background-color: $grey0
+    font-size: 1em
+    @media screen and ( max-width: 550px )
+        font-size: 0.9em
+        
 
 //React Router Links Style Reset
 a
@@ -39,6 +43,7 @@ a
         align-items: center
         justify-content: center
         flex-direction: column
+    
 
 // -- Inputs --
 input,
@@ -83,7 +88,6 @@ select
     justify-content: center
     z-index: 100
     .card
-
         max-width: 40em
 
 //Custom Scrollbar
@@ -93,3 +97,4 @@ select
 
 ::-webkit-scrollbar-thumb
     background: $grey1
+
