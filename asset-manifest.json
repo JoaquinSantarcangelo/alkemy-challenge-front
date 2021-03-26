@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/alkemy-challenge-front/static/css/main.02861ff1.chunk.css",
+    "main.js": "/alkemy-challenge-front/static/js/main.29b9d709.chunk.js",
+    "main.js.map": "/alkemy-challenge-front/static/js/main.29b9d709.chunk.js.map",
+    "runtime-main.js": "/alkemy-challenge-front/static/js/runtime-main.3b1c5715.js",
+    "runtime-main.js.map": "/alkemy-challenge-front/static/js/runtime-main.3b1c5715.js.map",
+    "static/js/2.079cbc6b.chunk.js": "/alkemy-challenge-front/static/js/2.079cbc6b.chunk.js",
+    "static/js/2.079cbc6b.chunk.js.map": "/alkemy-challenge-front/static/js/2.079cbc6b.chunk.js.map",
+    "index.html": "/alkemy-challenge-front/index.html",
+    "static/css/main.02861ff1.chunk.css.map": "/alkemy-challenge-front/static/css/main.02861ff1.chunk.css.map",
+    "static/js/2.079cbc6b.chunk.js.LICENSE.txt": "/alkemy-challenge-front/static/js/2.079cbc6b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3b1c5715.js",
+    "static/js/2.079cbc6b.chunk.js",
+    "static/css/main.02861ff1.chunk.css",
+    "static/js/main.29b9d709.chunk.js"
+  ]
+}
