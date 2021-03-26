@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 //Icons
@@ -52,6 +52,18 @@ const Items = ({
     );
   };
 
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [category, setCategory] = useState("all");
+
+  useEffect(() => {
+    if (category === "all") {
+      setFilteredItems(items);
+    } else {
+      const auxItems = items.filter((i) => i.category === category);
+      setFilteredItems(auxItems);
+    }
+  }, [items, category]);
+
   return (
     <div className="items">
       <div className="wrapper">
@@ -61,8 +73,23 @@ const Items = ({
             <BiPlus />
           </Link>
         )}
+        {!more && (
+          <select
+            id="category"
+            name="category"
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+          >
+            <option value="all">All</option>
+            <option value="taxes">Taxes</option>
+            <option value="food">Food</option>
+            <option value="health">Health</option>
+            <option value="fun">Fun</option>
+          </select>
+        )}
       </div>
-      {items.map((item, i) => (
+
+      {filteredItems.map((item, i) => (
         <Item key={item.id} itemInfo={item} i={i} />
       ))}
     </div>
